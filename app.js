@@ -7,6 +7,8 @@ const data=[
     {id:1006,fullName:"Hadi Ahmad",department:"Finance,",level:"Mid-Senior"},
     {id:1001,fullName:"Lana Ali",department:"Finance",level:"Senior"},
 ]
+let employeeSection=document.querySelector(".main__employees");
+let viewBtn=document.getElementById("view__btn");
 function Employees(id,name,department,level,imgUrl="baseUrl"){
     this.id=id;
     this.name=name;
@@ -14,49 +16,32 @@ function Employees(id,name,department,level,imgUrl="baseUrl"){
     this.level=level;
     this.imgUrl=imgUrl;
     this.salary;
-    this.minSalary;
-    this.maxSalary;
-    this.netSalary;
 }
 Employees.prototype.calcSalary=function (level){
     switch (level){
         case "Senior":{
-            this.maxSalary=2000;
-            this.minSalary=1500;
-            this.salary=Math.floor(Math.random()*(this.maxSalary-this.minSalary)+this.minSalary)
-            this.netSalary=this.salary*0.7;
+            this.salary=Math.floor((Math.random()*(2000-1500)+1500)*.7);
     break;
         }
         case "Mid-Senior":{
-            this.minSalary=1000;
-            this.maxSalary=1500;
-            this.salary=Math.floor(Math.random()*(this.maxSalary-this.minSalary)+this.minSalary)
-            this.netSalary=this.netSalary=this.salary*0.7;
+            this.salary=Math.floor((Math.random()*(1500-1000)+1000)*.7);
             break;
         }
         case "Junior":{
-            this.minSalary=500;
-            this.maxSalary=1000;
-            this.salary=Math.floor(Math.random()*(this.maxSalary-this.minSalary)+this.minSalary);
-            this.netSalary=this.salary*0.7;
+            this.salary=Math.floor((Math.random()*(1000-500)+500)*.7);
             break;
         }
+        default :console.log(this.level);
     }
     }
     Employees.prototype.renderUi=function(){
-        let employeeSection=document.querySelector(".main__employees");
         this.calcSalary(this.level);
-        let employee=document.createElement("h1");
-        employee.innerText=`FullName : ${this.name} ----- Salary : ${this.salary}`;
+        let employee=document.createElement("tr");
+        employee.innerText=`FullName : ${this.name} Salary : ${this.salary}`;
         employeeSection.append(employee);
     }
-    function handleView(){
-        let viewBtn=document.getElementById("view__btn");
-        viewBtn.addEventListener("click",(event)=>{
-            for(let i=0;i<data.length;i++){
-                let newEmployee=new Employees(data[i].id,data[i].fullName,data[i].department,data[i].level)
-                newEmployee.renderUi();
-                console.log("Clicked")
-            }
-        })
-    }
+    let employeesInstances=[];
+for(let i=0;i<data.length;i++){
+    employeesInstances[i]=new Employees(data[i].id,data[i].fullName,data[i].department,data[i].level);
+}
+console.log(employeesInstances)
