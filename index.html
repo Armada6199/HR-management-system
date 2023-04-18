@@ -15,7 +15,7 @@
                    <a href=""> Home </a>
                 </li>
                 <li>
-                  <a href="#main__employees">Employees</a>  
+                  <a href="#main__cards">Employees</a>  
                 </li>
                 <li>
                    <a href="#footer">About </a>
@@ -25,8 +25,42 @@
     </header>
     <main>
         <section>
-            <table id="main__employees" class="main__employees">
-            </table>
+            <form class="main__form" id="main__form">
+                <div>
+                    <label for="fullname">Fullname</label>
+                    <input type="text" name="fullname">
+                </div>
+                <div>
+                    <label for="department">Department</label>
+                    <select name="departments" id="">
+                        <option value="administration" >Administration</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="development">Development</option>
+                        <option value="finance">Finance</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="level">Level</label>
+                    <select name="levels" id="levels">
+                        <option value="Junior">Junior</option>
+                        <option value="mid-senior">Mid-Senior</option>
+                        <option value="senior">Senior</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="imgUrl">Image Url</label>
+                    <select name="imgUrl" id="">
+                        <option value="./assets/marketing.png">Marketing-Image</option>
+                        <option value="./assets/developer.webp">Development-Image</option>
+                        <option value="./assets/finance.jpg">Finance-Image</option>
+                        <option value="./assets/Administration.jpg">Adminstration-Image</option>
+                    </select>
+                </div>
+                    <button  type="submit">Save</button>
+            </form>
+            <div class="main__cards" id="main__cards">
+           
+            </div>
         </section>
     </main>
     <footer id="footer">

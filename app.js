@@ -40,8 +40,38 @@ Employees.prototype.calcSalary=function (level){
         employee.innerText=`FullName : ${this.name} Salary : ${this.salary}`;
         employeeSection.append(employee);
     }
-    let employeesInstances=[];
-for(let i=0;i<data.length;i++){
-    employeesInstances[i]=new Employees(data[i].id,data[i].fullName,data[i].department,data[i].level);
-}
-console.log(employeesInstances)
+    let form=document.getElementById("main__form");
+    let cardsCont=document.getElementById("main__cards");
+    form.addEventListener("submit",handleSubmit)
+    function handleSubmit(event){
+        event.preventDefault();
+       let employeeData={
+        fullName:event.target.fullname.value,
+        department:event.target.departments.value,
+        level:event.target.levels.value,
+        imgUrl:event.target.imgUrl.value
+       }
+        createCard(employeeData)
+    }
+    function createCard(employeeData){
+        let card=document.createElement("div")
+        card.classList.add("card");
+        let imageCont=document.createElement("div");
+        let cardDescCont=document.createElement("div");
+        let nameCont=document.createElement("h1");
+        let levelCont=document.createElement("p");
+        let departmentCont=document.createElement("p");
+        let img=document.createElement("img");
+        nameCont.innerText=employeeData.fullName;
+        departmentCont.innerText=employeeData.department;
+        levelCont.innerText=employeeData.level;
+        img.src=employeeData.imgUrl;
+        imageCont.classList.add("image")
+        imageCont.appendChild(img);
+        cardDescCont.classList.add("card__desc");
+        cardDescCont.append(nameCont,levelCont,departmentCont)
+        card.append(imageCont,cardDescCont);
+       cardsCont.append(card);
+    }
+
+
