@@ -53,6 +53,9 @@ Employees.prototype.calcSalary=function (level){
        }
         createCard(employeeData)
     }
+    function generateId(){
+        return Math.floor(Math.random()*10000)
+    }
     function createCard(employeeData){
         let card=document.createElement("div")
         card.classList.add("card");
@@ -62,6 +65,8 @@ Employees.prototype.calcSalary=function (level){
         let levelCont=document.createElement("p");
         let departmentCont=document.createElement("p");
         let img=document.createElement("img");
+        let idCont=document.createElement("p");
+        idCont.innerText=generateId()
         nameCont.innerText=employeeData.fullName;
         departmentCont.innerText=employeeData.department;
         levelCont.innerText=employeeData.level;
@@ -69,7 +74,7 @@ Employees.prototype.calcSalary=function (level){
         imageCont.classList.add("image")
         imageCont.appendChild(img);
         cardDescCont.classList.add("card__desc");
-        cardDescCont.append(nameCont,levelCont,departmentCont)
+        cardDescCont.append(nameCont,idCont,levelCont,departmentCont)
         card.append(imageCont,cardDescCont);
        cardsCont.append(card);
     }
