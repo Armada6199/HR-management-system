@@ -93,12 +93,18 @@ function footerTable(){
     let totalEmployees=document.createElement('td');
     let totalSalary=document.createElement("td");
     let averageSalary=document.createElement("td");
-    averageSalary=()
+    averageSalary.innerText=`Average Salary : ${(financeObj.totalSalary+developerObj.totalSalary+administrationObj.totalSalary+marketingObj.totalSalary)/employees.length}`;
+totalSalary.innerText=`Total Salary: ${financeObj.totalSalary+developerObj.totalSalary+administrationObj.totalSalary+marketingObj.totalSalary}`;
+    totalEmployees.innerText=`Number Of Employees : ${employees.length}`
+    thead.append(totalEmployees,totalSalary,averageSalary)
+    newTable.append(thead);
+    footer.append(newTable)
 }
 createTable(administrationObj);
 createTable(marketingObj);
 createTable(developerObj);
 createTable(financeObj)
+footerTable()
 }
 addToDepartment()
 
