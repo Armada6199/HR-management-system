@@ -1,9 +1,14 @@
 #main__table{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-  
+    background-color: #272D2D;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+  border-radius: 30px;
 }
 body{
     margin: 0;
@@ -38,19 +43,20 @@ header{
     
 }
 #main__table table {
-    width: 50%;
+    width: 30%;
     height: 400px;
-    margin: 50px;
+        margin: 50px;
     background-color: #f6f6f6;
     font-size: 25px;
     padding: 20px;
+    border-radius: 30px;
 }
 footer{
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: bisque;
+    background-color: #f6f6f6;
     
 }
 footer table{ 

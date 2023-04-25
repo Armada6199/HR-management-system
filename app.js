@@ -2,7 +2,17 @@ let employeeSection=document.querySelector(".main__employees");
 let form=document.getElementById("main__form");
 let cardsCont=document.getElementById("main__cards");
 let viewBtn=document.getElementById("view__btn");
-let employeesArr=[];
+let employeesArr=[]
+let seedData=[
+{id:1000,name:"Ghazi Samer",department:"Administration",level:"senior",imgUrl:'./assets/Administration.jpg'},
+{id:1002,name:"Tamara Ayoub",department:"Marketing",level:"senior",imgUrl:'./assets/marketing.png'},
+{id:1003,name:"Safi Walid",department:"Administration",level:"mid-senior" ,imgUrl:'./assets/Administration.jpg'},
+{id:1004,name:"Omar Zaid",department:"Development",level:"senior" ,imgUrl:'./assets/Developer.webp'},
+{id:1005,name:"Rana Saleh",department:"Development",level:"Junior" ,imgUrl:'./assets/Developer.webp'},
+{id:1006,name:"Hadi Ahmad",department:"Finance,",level:"mid-senior" ,imgUrl:'./assets/finance.jpg'},
+{id:1001,name:"Lana Ali",department:"Finance",level:"senior" ,imgUrl:'./assets/finance.jpg'}
+];
+let data=[];
 function Employees(id,name,department,level,imgUrl="baseUrl"){
     this.id=id; 
     this.name=name;
@@ -29,19 +39,23 @@ Employees.prototype.calcSalary=function(level){
         default :console.log(this.level);
     }
     }
+    for(let i=0;i<seedData.length;i++){
+        data.push(new Employees(seedData[i].id,seedData[i].name,seedData[i].department,seedData[i].level,seedData[i].imgUrl))
+    }
+  
      function getFromLocal(){
-        let data=JSON.parse(localStorage.getItem('employees'))
-        if(data!==null) {
-            for(let i=0;i<data.length;i++){
-                let employee=new Employees(data[i].id,data[i].name,data[i].department,data[i].level,data[i].imgUrl)
+        let localData=JSON.parse(localStorage.getItem('employees'))
+        if(localData!==null) {
+            for(let i=0;i<localData.length;i++){
+                let employee=new Employees(localData[i].id,localData[i].name,localData[i].department,localData[i].level,localData[i].imgUrl)
              employeesArr.push(employee)
-            }
-        createCards(employeesArr)    
-        }
+            } 
+            employeesArr.concat(data);
+        }else employeesArr=data;
       return employeesArr;
     }
-    getFromLocal()
-
+    getFromLocal();
+    createCards(employeesArr)
     form.addEventListener("submit",handleSubmit)
     function handleSubmit(event){
         event.preventDefault();
@@ -61,11 +75,10 @@ Employees.prototype.calcSalary=function(level){
         return Math.floor(Math.random()*10000)  
     }
     function addToLocal(){
+        console.log(employeesArr)
         let data=JSON.stringify(employeesArr);
         localStorage.setItem("employees",data);
-    }
-    
-    
+    }    
     function createCards(employeesArr){
         cardsCont.innerHTML=""
         for(let i=0;i<employeesArr.length;i++){

@@ -51,8 +51,8 @@ section{
 
 .main__form{
     display: flex;
-    position: sticky;
-    top: px;
+    position: fixed;
+    top: 100px;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
@@ -100,20 +100,22 @@ section{
     align-self: center
 }
 .main__cards{
-    width: 100%;
+    width: 60%;
     height: 100%;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 20px;
-
+    justify-content: flex-start;
+    flex-wrap:wrap;
+    gap: 30px;
+    position: relative;
+   left: 300px;
 }
 .main__cards .card{
     width: 300px;
     height: 350px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
+    min-height: 350px;
 }
 .main__cards .card .card__desc{
     width: 100%;
