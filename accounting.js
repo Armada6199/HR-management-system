@@ -56,11 +56,10 @@ function createTable(department){
     totatlSalarySec.append(totalSalaryText,totalSalary)
     tbody.append(departmentSec,employeesSec,averageSalarySec,totatlSalarySec)
     newTable.append(thead,tbody);
-    mainTable.append(newTable);
+    mainTable?.append(newTable);
 }  
 function addToDepartment(){
     employees.forEach((e)=>{
-        console.log(employees)
     switch (e.department){
         case "administration":{
             administrationObj.employeesNum++;
@@ -93,9 +92,9 @@ function footerTable(){
     let totalEmployees=document.createElement('td');
     let totalSalary=document.createElement("td");
     let averageSalary=document.createElement("td");
-    averageSalary.innerText=`Average Salary : ${(financeObj.totalSalary+developerObj.totalSalary+administrationObj.totalSalary+marketingObj.totalSalary)/employees.length}`;
+    averageSalary.innerText=`Average Salary : ${(financeObj.totalSalary+developerObj.totalSalary+administrationObj.totalSalary+marketingObj.totalSalary)/employees?.length}`;
 totalSalary.innerText=`Total Salary: ${financeObj.totalSalary+developerObj.totalSalary+administrationObj.totalSalary+marketingObj.totalSalary}`;
-    totalEmployees.innerText=`Number Of Employees : ${employees.length}`
+    totalEmployees.innerText=`Number Of Employees : ${employees?.length}`
     thead.append(totalEmployees,totalSalary,averageSalary)
     newTable.append(thead);
     footer.append(newTable)

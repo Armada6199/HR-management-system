@@ -4,15 +4,14 @@ let cardsCont=document.getElementById("main__cards");
 let viewBtn=document.getElementById("view__btn");
 let employeesArr=[]
 let seedData=[
-{id:1000,name:"Ghazi Samer",department:"Administration",level:"senior",imgUrl:'./assets/Administration.jpg'},
-{id:1002,name:"Tamara Ayoub",department:"Marketing",level:"senior",imgUrl:'./assets/marketing.png'},
-{id:1003,name:"Safi Walid",department:"Administration",level:"mid-senior" ,imgUrl:'./assets/Administration.jpg'},
-{id:1004,name:"Omar Zaid",department:"Development",level:"senior" ,imgUrl:'./assets/Developer.webp'},
-{id:1005,name:"Rana Saleh",department:"Development",level:"Junior" ,imgUrl:'./assets/Developer.webp'},
-{id:1006,name:"Hadi Ahmad",department:"Finance,",level:"mid-senior" ,imgUrl:'./assets/finance.jpg'},
-{id:1001,name:"Lana Ali",department:"Finance",level:"senior" ,imgUrl:'./assets/finance.jpg'}
+{id:1000,name:"Ghazi Samer",department:"administration",level:"senior",imgUrl:'./assets/Administration.jpg'},
+{id:1002,name:"Tamara Ayoub",department:"marketing",level:"senior",imgUrl:'./assets/marketing.png'},
+{id:1003,name:"Safi Walid",department:"administration",level:"mid-senior" ,imgUrl:'./assets/Administration.jpg'},
+{id:1004,name:"Omar Zaid",department:"development",level:"senior" ,imgUrl:'./assets/Developer.webp'},
+{id:1005,name:"Rana Saleh",department:"development",level:"Junior" ,imgUrl:'./assets/Developer.webp'},
+{id:1006,name:"Hadi Ahmad",department:"finance,",level:"mid-senior" ,imgUrl:'./assets/finance.jpg'},
+{id:1001,name:"Lana Ali",department:"finance",level:"senior" ,imgUrl:'./assets/finance.jpg'}
 ];
-let data=[];
 function Employees(id,name,department,level,imgUrl="baseUrl"){
     this.id=id; 
     this.name=name;
@@ -40,22 +39,22 @@ Employees.prototype.calcSalary=function(level){
     }
     }
     for(let i=0;i<seedData.length;i++){
-        data.push(new Employees(seedData[i].id,seedData[i].name,seedData[i].department,seedData[i].level,seedData[i].imgUrl))
+        employeesArr.push(new Employees(seedData[i].id,seedData[i].name,seedData[i].department,seedData[i].level,seedData[i].imgUrl))
     }
   
      function getFromLocal(){
         let localData=JSON.parse(localStorage.getItem('employees'))
         if(localData!==null) {
+            employeesArr=[]
             for(let i=0;i<localData.length;i++){
                 let employee=new Employees(localData[i].id,localData[i].name,localData[i].department,localData[i].level,localData[i].imgUrl)
              employeesArr.push(employee)
             } 
-            employeesArr.concat(data);
-        }else employeesArr=data;
+        }
+        console.log(employeesArr)
       return employeesArr;
     }
-    getFromLocal();
-    createCards(employeesArr)
+    createCards(getFromLocal())
     form.addEventListener("submit",handleSubmit)
     function handleSubmit(event){
         event.preventDefault();
@@ -71,8 +70,9 @@ Employees.prototype.calcSalary=function(level){
        addToLocal();
        createCards(employeesArr);
     }
+    localStorage.setItem("employees",JSON.stringify(employeesArr))
     function generateId(){
-        return Math.floor(Math.random()*10000)  
+        return Math.floor(Math.random()*(9000)+1000)  
     }
     function addToLocal(){
         console.log(employeesArr)
@@ -93,7 +93,7 @@ Employees.prototype.calcSalary=function(level){
             let idCont=document.createElement("p");
             let salaryCont=document.createElement('p');
             salaryCont.innerText=employeesArr[i].salary;
-            idCont.innerText=generateId();
+            idCont.innerText="Employee Id : "+generateId();
             nameCont.innerText=employeesArr[i].name;
             departmentCont.innerText=employeesArr[i].department;
             levelCont.innerText=employeesArr[i].level;
