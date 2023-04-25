@@ -92,11 +92,11 @@ Employees.prototype.calcSalary=function(level){
             let img=document.createElement("img");
             let idCont=document.createElement("p");
             let salaryCont=document.createElement('p');
-            salaryCont.innerText=employeesArr[i].salary;
+            salaryCont.innerText='Salary : '+employeesArr[i].salary;
             idCont.innerText="Employee Id : "+generateId();
-            nameCont.innerText=employeesArr[i].name;
-            departmentCont.innerText=employeesArr[i].department;
-            levelCont.innerText=employeesArr[i].level;
+            nameCont.innerText='Employee Name : '+employeesArr[i].name;
+            departmentCont.innerText='Department : '+employeesArr[i].department;
+            levelCont.innerText='Level : '+employeesArr[i].level;
             img.src=employeesArr[i].imgUrl;
             imageCont.classList.add("image");
             imageCont.appendChild(img);
